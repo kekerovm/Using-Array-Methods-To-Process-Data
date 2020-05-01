@@ -1,78 +1,66 @@
 // Answer 1
 
-var avg = items.reduce(function(a, b) {
+let avg = items.reduce(function(a, b) {
   return a + b.price
-}, 0)
+}, 0) / items.length
 
-var avg = avg / items.length
-var avg = avg.toFixed(2)
-dcoument.querySelector("#answer1").innerHTML = `The average price is $${avg}`
+items.reduce((a,b) => a + b.price) / items.length
+
+dcoument.querySelector(
+  "#answer1"
+  ).innerHTML = `The average price is $${avg.toFixed}`
 
 // Answer 2
 
-var filter = items
-  .filter(function(a) {
-    if (a.price > 14.0 && a.price < 18.0) return true
-    else {
-      return false
-    }
-  })
-  .map(function(a) {
-    return a.title
-  })
-document.querySelector("#anwer2").innerHTML = filtr.join(`\n\n`)
+// let between = items.filter(function(item){
+//   return item.price > 14 && items.price < 18
+// }).map(function(item){
+//   return item.title
+// }).join("\n\n")
+
+let between = items.filter(item => item.price > 14 && item.price < 18).map(item => item.title).join("\n\n")
+
+// let html = ''
+// between.forEach(function(item){ 
+//   html += item.title + '\n\n'
+// })
+
+document.querySelector("#anwer2").innerHTML = between
 
 // Answer 3
 
-var name = []
-var currency = items.filter(function(arr) {
-  if (arr.currency_code === "GBP") {
-    return arr
-  }
-})
-console.log(currency[0]["currency_code"])
-document.querySelector(
-  "#answer3"
-).innerHTML = `${currency[0]["title"]} costs &#65505;${currency[0]["price"]}`
+// let gbpitem = items.filter(function(item){
+//   return item.currency_code === 'GDP'
+// })[0]
+
+let gbpitem = items.find(item => item.currency_code === 'GDP')
+
+document.querySelector("#anwer3").innerHTML = `${gbpitem.title} costs &pound;${gbpitem.price}`
 
 // Answer 4
 
-let woodstuff = items.filter(function(word) {
-  return word.materials.includes("woodstuff")
-})
+let madeofwood = items
+  .filter(function(item) {
+    return item.materials.includes("wood")
+  })
+    .map(function(item) {
+      return item.title 
+    })
+    .join('\n\n')
 
-console.log(woodstuff)
-
-let html3 = ""
-woodItems.forEach(function(item) {
-  html3 += item.title + "<br>"
-})
-
-document.querySelector("#answer4").innerHTML = `${html3}`
+document.querySelector("#answer4").innerHTML = madeofwood
 
 // Answer 5
 
-var eight = items
-  .filter(function(a) {
-    if (a.materials.length >= 8) return true
-    else {
-      return false
-    }
-  })
-  .map(function(a) {
-    return `${
-      a.title
-    } has ${a.materials.length} materials:\n\n${a.materials.join("\n")}\n\n`
-  })
+let eight = items.filter(function(item) {
+  return items.materials.length >= 8
+})
+  .map(function(item){
+  return `${item.title} has ${items.materials.length} materials;\n\n${items.materials.join('\n')}`
+  }).join("\n\n")
 
 document.querySelector("#answer5").innerHTML = eight
 
 // Answer 6
 
-var made = items.filter(function(a) {
-  if (a.who_made === "i_did") {
-    return true
-  } else {
-    return false
-  }
-})
+document.querySelector("#answer6").innerHTML = `${items.filter(item => item.who_made == "i_did").length} were made by their sellers`
